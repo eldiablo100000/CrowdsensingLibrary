@@ -1,0 +1,71 @@
+####################################################################################
+CROWDSENSING DATA LIBRARY FOR ARDUINO
+THINGSPEAK.H
+####################################################################################
+La libreria "ThingSpeak.h" comunica con il WebService https://thingspeak.com.
+I due metodi fondamentali sono "CreateChannel" e "UpdateChannel":
+1) CreateChannel permette di creare un canale (con relativi 8 campi max) sul
+WebService. E' necessario inserire la MASTERKEY per poter creare un canale
+sul proprio account. (MASTERKEY cioè la chiave in scrittura dell'account
+ThingSpeak);
+2) UpdateChannel permette di aggiornare uno o più canali su un canale precedentemente
+creato. E' necessaria l'APIKEY, che la si ottiene chiamando la CreateChannel ( con 
+successo), o inserendola manualmente.
+
+Entrambe le funzioni prendono in input tutti i parametri registrabili da ThingSpeak
+(altitudine, posizione, coordinate, flag publico, tag, url, descrizione,ecc..).
+Inoltre, poichè prendono in input un client, sono state definite con overloading
+(esplicitamente ridefinite per FishinoClient, EthernetClient, WiFiClient).
+#####################################################################################
+	METODI AGGIUNTIVI
+#####################################################################################
+1)GetKey()		-> Permette di ritrovare l'APIKEY sull'EEPROM;
+2)KeyExists()	-> True se l'APIKEY esiste.
+#####################################################################################
+	LIBRERIE USATE
+#####################################################################################
+Arduino.h
+WProgram.h
+Flash.h
+WiFi.h
+WiFiClient.h
+WiFiServer.h
+WiFiUdp.h
+Dns.h
+EthernetClient.h
+Dhcp.h
+EthernetServer.h
+Ethernet.h
+EthernetUdp.h
+Fishino.h
+SPI.h
+EEPROM.h
+#####################################################################################
+	ESEMPI
+#####################################################################################
+Gli sketch sono tre:
+1)CrowdsenseEthernetSketch:
+Testato con Arduino+EthernetShield,sensore DHT11(Temperatura e umidità) pin 7 e 
+sensore DS18B20 (Temperatura) pin 8.
+Setup	->Setta rete, setta sensori,If(not KeyExists()) CreateChannel()
+Loop	->Ogni 15 sec.(time min. di ThingSpeak) UpdateChannel()
+2)CrowdsenseFishinoSketch
+Testato con Fishino+ESP integrato,sensore DHT11(Temperatura e umidità) pin 2 e 
+sensore DS18B20 (Temperatura) pin 5.
+Setup	->Setta rete, setta sensori,If(not KeyExists()) CreateChannel()
+Loop	->Ogni 15 sec.(time min. di ThingSpeak) UpdateChannel()
+3)CrowdsenseWiFiSketch:
+Testato con Arduino+WiFiShield,sensore DHT11(Temperatura e umidità) pin 2 e 
+sensore DS18B20 (Temperatura) pin 5.
+Setup	->Setta rete, setta sensori,If(not KeyExists()) CreateChannel()
+Loop	->Ogni 15 sec.(time min. di ThingSpeak) UpdateChannel()
+
+#####################################################################################
+L'APIKEY viene scritta sui primi 17 caratteri della EEPROM('#' come primo carattere +
+16 di APIKEY).
+#####################################################################################
+
+Sviluppato da 
+	Natale Vadalà
+	Bologna,	
+	Ottobre 2016.

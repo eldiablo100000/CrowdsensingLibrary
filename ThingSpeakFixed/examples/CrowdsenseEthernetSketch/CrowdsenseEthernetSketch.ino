@@ -1,6 +1,6 @@
 #include <ThingSpeak.h>
 
-#include <ArduinoJson.h>
+
 
 //versione corretta
 #include <Dns.h>
