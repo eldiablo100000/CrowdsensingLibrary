@@ -1,0 +1,5 @@
+La MASTERKEY memorizzata si riferisce ad un mio account ThingSpeak creato ad hoc per il tirocinio.
+
+User: doctor.bearer@gmail.com
+Pass: ciaociao
+
